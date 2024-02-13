@@ -19,16 +19,16 @@ public class CurrencyRatesSteps {
         RestAssured.baseURI = "http://api.nbp.pl";
     }
 
-    @When("I request the current exchange rates from table A")
-    public void i_request_the_current_exchange_rates_from_table_a() {
+    @When("Request the current exchange rates from table A")
+    public void request_the_current_exchange_rates_from_table_a() {
         response = RestAssured.get("/api/exchangerates/tables/A?format=json");
         int statusCode = response.getStatusCode();
         System.out.println("Response status code: " + statusCode);
         Assert.assertEquals(200, statusCode);
     }
 
-    @Then("I display the exchange rate for currency with code {string}")
-    public void i_display_the_exchange_rate_for_currency_with_code(String currencyCode) {
+    @Then("Display the exchange rate for currency with code {string}")
+    public void display_the_exchange_rate_for_currency_with_code(String currencyCode) {
         List<List<Map<String, Object>>> currencyRates = response.jsonPath().getList("rates");
 
         for (List<Map<String, Object>> rates : currencyRates) {
@@ -40,8 +40,8 @@ public class CurrencyRatesSteps {
         }
     }
 
-    @Then("I display the exchange rate for currency with name {string}")
-    public void i_display_the_exchange_rate_for_currency_with_name(String currencyName) {
+    @Then("Display the exchange rate for currency with name {string}")
+    public void display_the_exchange_rate_for_currency_with_name(String currencyName) {
         List<List<Map<String, Object>>> currencyRates = response.jsonPath().getList("rates");
 
         for (List<Map<String, Object>> rates : currencyRates) {
@@ -53,8 +53,8 @@ public class CurrencyRatesSteps {
         }
     }
 
-    @Then("I display currencies with rates above {double}")
-    public void i_display_currencies_with_rates_above(double rateValue) {
+    @Then("Display currencies with rates above {double}")
+    public void display_currencies_with_rates_above(double rateValue) {
         List<List<Map<String, Object>>> currencyRates = response.jsonPath().getList("rates");
 
         System.out.printf("\nCurrencies with rates above: %s\n", rateValue);
@@ -69,8 +69,8 @@ public class CurrencyRatesSteps {
         }
     }
 
-    @Then("I display currencies with rates below {double}")
-    public void i_display_currencies_with_rates_below(double rateValue) {
+    @Then("Display currencies with rates below {double}")
+    public void display_currencies_with_rates_below(double rateValue) {
         List<List<Map<String, Object>>> currencyRates = response.jsonPath().getList("rates");
         System.out.printf("\nCurrencies with rates below: %s\n", rateValue);
 
